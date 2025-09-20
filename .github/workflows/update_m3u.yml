@@ -1,0 +1,36 @@
+name: Auto Update M3U
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"   # Har 3 ghante run hoga (UTC)
+  workflow_dispatch:        # Manual trigger option bhi hai
+
+jobs:
+  update_m3u:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run M3U update script
+        run: |
+          python scripts/update_m3u.py   # Yaha aapka python script path dena
+
+      - name: Commit & Push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.m3u
+          git commit -m "Auto-update M3U files" || echo "No changes to commit"
+          git push
+          
