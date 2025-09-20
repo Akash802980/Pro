@@ -24,13 +24,13 @@ jobs:
 
       - name: Run M3U update script
         run: |
-          python scripts/update_m3u.py   # Yaha aapka python script path dena
+          python vt.py   # Yaha aapka python script path dena
 
       - name: Commit & Push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add *.m3u
+          git add ak.m3u
           git commit -m "Auto-update M3U files" || echo "No changes to commit"
           git push
           
