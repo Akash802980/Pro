@@ -5,27 +5,33 @@ import re
 # CONFIG
 # -----------------------------
 SOURCE_M3U = "https://joker-verse.vercel.app/jokertv/playlist.m3u?uid=1045595420&pass=169ae613&vod=true"
-LOCAL_M3U  = "/storage/emulated/0/qpython/scripts3/ak.m3u"
+LOCAL_M3U  = "ak.m3u"
+
+# Custom headers
+HEADERS = {
+    "User-Agent": "TiviMate/5.1.0 (Android 11)"
+}
 # -----------------------------
 
-# Function to fetch source M3U (SSL issues ignore)
+# Function to fetch source M3U content
 def fetch_source_m3u(url):
-    resp = requests.get(url, verify=False, timeout=15)  # verify=False bypass SSL errors
+    resp = requests.get(url, headers=HEADERS, verify=False, timeout=15)  # headers + SSL bypass
     resp.raise_for_status()
     return resp.text
 
-# Function to extract hdntl token from a line
+# Function to extract latest hdntl token from a line
 def extract_hdntl_token(line):
+    # Regex to find hdntl token in Cookie=""
     match = re.search(r'Cookie="(hdntl=[^"&]+)"', line)
     if match:
         return match.group(1)
     return None
 
-# Fetch source M3U and extract token
-print("Fetching source M3U...")
+# Read source M3U and extract token
 source_content = fetch_source_m3u(SOURCE_M3U)
+lines = source_content.splitlines()
 token_line = None
-for line in source_content.splitlines():
+for line in lines:
     token = extract_hdntl_token(line)
     if token:
         token_line = token
@@ -41,16 +47,16 @@ print("✅ Latest Token:", token_line)
 with open(LOCAL_M3U, "r", encoding="utf-8") as f:
     local_lines = f.readlines()
 
-# Update each URL with latest token
+# Replace each URL's hdntl token in local M3U
 new_lines = []
 for line in local_lines:
     if line.startswith("http"):
-        # Remove old hdntl token if present
+        # Remove existing hdntl token if present
         if "hdntl=" in line:
             line = re.sub(r'hdntl=[^&"\n]+', token_line, line)
         else:
             # Append token at the end
-            line = line.strip() + f"|Cookie=\"{token_line}\"\n"
+            line = line.strip() + f'|Cookie="{token_line}"\n'
     new_lines.append(line)
 
 # Save updated M3U
