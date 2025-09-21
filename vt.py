@@ -1,66 +1,98 @@
 import requests
 import re
+import shutil
+from pathlib import Path
+import time
 
-# -----------------------------
-# CONFIG
-# -----------------------------
-SOURCE_M3U = "https://joker-verse.vercel.app/jokertv/playlist.m3u?uid=1045595420&pass=169ae613&vod=true"
-LOCAL_M3U  = "ak.m3u"
-
-# Custom headers
+# ---------------- CONFIG ----------------
+SOURCE_URL = "https://joker-verse.vercel.app/jokertv/playlist.m3u?uid=1045595420&pass=169ae613&vod=true"
+AK_FILE = "ak.m3u"          # file to update in-place
+BACKUP_SUFFIX = ".bak"      # backup file
 HEADERS = {
-    "User-Agent": "TiviMate/5.1.0 (Android 11)"
+    "Host": "joker-verse.vercel.app",
+    "User-Agent": "TiviMate/5.1.0 (Android 13)",
+    "Accept-Encoding": "gzip",
+    "Connection": "keep-alive"
 }
-# -----------------------------
+RETRIES = 5
+TIMEOUT = 300
+CHUNK_SIZE = 8192
+# ---------------------------------------
 
-# Function to fetch source M3U content
-def fetch_source_m3u(url):
-    resp = requests.get(url, headers=HEADERS, verify=False, timeout=15)  # headers + SSL bypass
-    resp.raise_for_status()
-    return resp.text
+def download_source(url, headers, retries=RETRIES, timeout=TIMEOUT):
+    """Download source playlist text with retries."""
+    for attempt in range(1, retries + 1):
+        try:
+            print(f"[Download] Attempt {attempt}...")
+            r = requests.get(url, headers=headers, timeout=timeout)
+            r.raise_for_status()
+            return r.text
+        except Exception as e:
+            print(f"[Download] Error: {e}, retrying...")
+            time.sleep(3)
+    raise RuntimeError("Failed to download source playlist after retries")
 
-# Function to extract latest hdntl token from a line
-def extract_hdntl_token(line):
-    # Regex to find hdntl token in Cookie=""
-    match = re.search(r'Cookie="(hdntl=[^"&]+)"', line)
-    if match:
-        return match.group(1)
+def extract_token(source_text, base_url=None):
+    """Extract hdntl token for given base_url. If no base_url given, return first token found."""
+    if base_url:
+        # Try to find token near base_url
+        for m in re.finditer(re.escape(base_url), source_text):
+            start = max(0, m.start() - 300)
+            end = m.end() + 1500
+            snippet = source_text[start:end]
+            tok = re.search(r'hdntl=[^"&\s\|]+', snippet)
+            if tok:
+                return tok.group(0)
+    # fallback: first token in source
+    tok = re.search(r'hdntl=[^"&\s\|]+', source_text)
+    if tok:
+        return tok.group(0)
     return None
 
-# Read source M3U and extract token
-source_content = fetch_source_m3u(SOURCE_M3U)
-lines = source_content.splitlines()
-token_line = None
-for line in lines:
-    token = extract_hdntl_token(line)
-    if token:
-        token_line = token
-        break
+def update_ak_m3u(ak_file, source_text):
+    """Update ak.m3u in-place with new tokens"""
+    p = Path(ak_file)
+    if not p.exists():
+        raise FileNotFoundError(f"{ak_file} not found")
 
-if not token_line:
-    print("❌ Token not found in source M3U!")
-    exit()
+    # Backup
+    backup_path = p.with_suffix(p.suffix + BACKUP_SUFFIX)
+    shutil.copy2(p, backup_path)
+    print(f"[Backup] Saved backup: {backup_path}")
 
-print("✅ Latest Token:", token_line)
+    lines = p.read_text(encoding="utf-8").splitlines(keepends=True)
+    updated_lines = []
+    total_http = 0
+    updated_count = 0
 
-# Read local M3U
-with open(LOCAL_M3U, "r", encoding="utf-8") as f:
-    local_lines = f.readlines()
-
-# Replace each URL's hdntl token in local M3U
-new_lines = []
-for line in local_lines:
-    if line.startswith("http"):
-        # Remove existing hdntl token if present
-        if "hdntl=" in line:
-            line = re.sub(r'hdntl=[^&"\n]+', token_line, line)
+    for line in lines:
+        stripped = line.strip()
+        if stripped.lower().startswith("http"):
+            total_http += 1
+            # Extract base URL (cut at ? or | if present)
+            q_idx = len(stripped)
+            for delim in ['?', '|']:
+                i = stripped.find(delim)
+                if i != -1:
+                    q_idx = min(q_idx, i)
+            base = stripped[:q_idx]
+            token = extract_token(source_text, base)
+            if token:
+                new_line = base + "?" + token + ("\n" if not line.endswith("\n") else "")
+                updated_lines.append(new_line)
+                updated_count += 1
+            else:
+                updated_lines.append(line)
         else:
-            # Append token at the end
-            line = line.strip() + f'|Cookie="{token_line}"\n'
-    new_lines.append(line)
+            updated_lines.append(line)
 
-# Save updated M3U
-with open(LOCAL_M3U, "w", encoding="utf-8") as f:
-    f.writelines(new_lines)
+    # Write back in-place
+    p.write_text("".join(updated_lines), encoding="utf-8")
+    print(f"[Done] Total channels: {total_http}, Updated: {updated_count}")
 
-print("✅ Local M3U updated successfully!")
+if __name__ == "__main__":
+    print("1) Downloading source playlist...")
+    src_text = download_source(SOURCE_URL, HEADERS)
+    print("2) Updating ak.m3u in-place...")
+    update_ak_m3u(AK_FILE, src_text)
+    print("✅ Finished.")
