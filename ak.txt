@@ -1,1 +1,1 @@
-https://z5ak-cmaflive.zee5.com/cmaf/live/2105532/ZingELE/master.m3u8?hdntl=exp=1761317406~acl=/*~data=hdntl~hmac=af92a340bdbd4d983befaec897187a0a823643ec1b0ecb3323b84b0de5a6bbc6
+https://z5ak-cmaflive.zee5.com/cmaf/live/2105532/ZingELE/master.m3u8?hdntl=exp=1761339610~acl=/*~data=hdntl~hmac=b2b944cbe5562f2f6a923b64a29c986f0f52d3582e6db7e15ab03f3c5efa1c52
