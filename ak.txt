@@ -1,1 +1,1 @@
-https://z5ak-cmaflive.zee5.com/cmaf/live/2105532/ZingELE/master.m3u8?hdntl=exp=1762494006~acl=/*~id=544d3391-d46d-4e6c-94f8-740b0af14a28~data=hdntl~hmac=c35b24ba7974da282bf2f8ee8469f259855eaa636da9a5772ddc938f09350a1c
+https://zee5.joker-verse.workers.dev/master.m3u8?id=0-9-zing&uid=1045595420&pass=169ae613
