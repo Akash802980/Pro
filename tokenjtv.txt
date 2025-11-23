@@ -1,1 +1,1 @@
-https://jiotvbpkmob.cdn.jio.com/bpk-tv/Star_Plus_HD_BTS/output/index.mpd?__hdnea__=st=1763328004~exp=1763414404~acl=/*~hmac=1ec242ac251b382d5fed1f50517f1499f8e97c52883b8d59900efa37a8c4f530
+https://jiotvbpkmob.cdn.jio.com/bpk-tv/Star_Plus_HD_BTS/output/index.mpd?__hdnea__=st=1763838604~exp=1763925004~acl=/*~hmac=692872275e23c7e8d558fd1dd7c039482c19cede0728880af3c4875a71679806
