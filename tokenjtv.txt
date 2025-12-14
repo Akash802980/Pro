@@ -1,1 +1,1 @@
-__hdnea__=st=1765681232~exp=1765767632~acl=/*~hmac=6fa453806ad75f6360a3dea66033b7c4e2011d136e2e8494c2de5990c8d6359f
+https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Gold_HD_BTS/output/index.mpd?__hdnea__=st=1765681232~exp=1765767632~acl=/*~hmac=6fa453806ad75f6360a3dea66033b7c4e2011d136e2e8494c2de5990c8d6359f
