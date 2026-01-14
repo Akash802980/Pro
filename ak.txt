@@ -1,1 +1,1 @@
-https://proxy.redcdn.online/https://z5ak-cmaflive.zee5.com/cmaf/live/2105532/ZingELE/master.m3u8?hdntl=exp=1768480984~acl=/*~id=84acef9f-88ee-4d60-a059-1229b0f988c3~data=hdntl~hmac=bdfbc8b35b48d945dcd8ae4684297b32fc1090531d497457e14b2e17e2016832
+https://proxy.redcdn.online/https://z5ak-cmaflive.zee5.com/cmaf/live/2105532/ZingELE/master.m3u8?hdntl=exp=1768499223~acl=/*~id=1035bafb-fac9-453a-85ee-626fa83c18cd~data=hdntl~hmac=e900cfc3f56beaf74ae974274e254e49050e9115725fc822efbe01e3ee0ff2f2
