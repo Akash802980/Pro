@@ -1,1 +1,1 @@
-https://proxy.redcdn.online/https://z5live-cf.zee5.com/out/v1/ZEE5_Live_Channels/Zing-SD/master/master.m3u8?hdntl=exp=1771389368~acl=/*~id=55059568-22a2-43c7-a48f-a53c3ac9b80b~data=hdntl~hmac=618228e46b2e228bd28ce2a0ade2dbc386cb29134a2d6bd2b65846fd21e609e2
+https://proxy.redcdn.online/https://z5live-cf.zee5.com/out/v1/ZEE5_Live_Channels/Zing-SD/master/master.m3u8?hdntl=exp=1771396687~acl=/*~id=6af9c0a2-86d2-46ae-bf3e-6de82240417b~data=hdntl~hmac=5c7ae8f42f288d8131405da5c2fb88533bb5501c09a736077199f377bb40dd5b
