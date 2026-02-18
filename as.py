@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 # ===== CONFIG =====
-WORKER_URL = "https://zee5.joker-verse.workers.dev/master.m3u8?id=0-9-zing&uid=1045595420&pass=169ae613"
+WORKER_URL = "https://zee5.joker-verse.workers.dev/master.m3u8?id=0-9-9z5383489&uid=1045595420&pass=169ae613"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
     "Origin": "https://www.zee5.com",
