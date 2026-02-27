@@ -1,1 +1,1 @@
-https://proxy.redcdn.online/https://z5live-cf.zee5.com/out/v1/ZEE5_Live_Channels/Zee-Talkies-SD/master/master.m3u8?hdntl=exp=1772303168~acl=/*~id=28a56efa-da9f-4c33-98de-2bc24660b20f~data=hdntl~hmac=b606f78f711cd20c6b1bcf9741c41f7d15d8689e00c3352a4c1a9c7cc008e276
+https://proxy.redcdn.online/https://z5live-cf.zee5.com/out/v1/ZEE5_Live_Channels/Zee-Talkies-SD/master/master.m3u8?hdntl=exp=1772314148~acl=/*~id=6b6f5fbe-e896-40d7-91be-43967f6d8fe5~data=hdntl~hmac=0196fdbe3cb3f997d728e927bbf6f848760875c0874dd340bb8d3854ed8b62b7
