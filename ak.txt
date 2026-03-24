@@ -1,1 +1,1 @@
-https://proxy.redcdn.online/https://z5live-cf.zee5.com/out/v1/ZEE5_Live_Channels/Zee-Talkies-SD/master/master.m3u8?hdntl=exp=1772347087~acl=/*~id=41794382-c4f0-4a5d-851c-bc62dc32fb01~data=hdntl~hmac=2a2b48355727775e6436f813ae5478b69809144345ea6c1534e1e4d4a5b79a75
+https://zee5.joker-verse.workers.dev/master.m3u8?id=0-9-9z5383489&uid=1045595420&pass=169ae613
