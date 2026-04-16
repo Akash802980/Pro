@@ -24,7 +24,7 @@ jobs:
 
       - name: Run M3U update script
         run: |
-          python as.py   # Yaha aapka python script path dena
+          python vt.py   # Yaha aapka python script path dena
 
       - name: Commit & Push changes
         run: |
