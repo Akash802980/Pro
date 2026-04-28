@@ -1,17 +1,5 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="143" group-title="English" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/CNBCTV18Prime.png",CNBC TV18 Prime
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=https://temp.webplay.fun/jtv/key.php?id=143
-#EXTVLCOPT:http-user-agent=plaYtv/7.1.3 (Linux;Android 13) ygx/69.1 ExoPlayerLib/824.0
-#EXTHTTP:{"cookie": "__hdnea__=st=1776761562~exp=1776783162~acl=/*~hmac=87d8f5a82e8891ffc6c1ddcb19089f4d452e56995ed82f88b746b954d17ac420"}
-https://gtvaki.1akiytb4.workers.dev/143.mpd
-
-#EXTINF:-1 tvg-id="144" group-title="Entertainment" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ColorsHD.png",Colors HD
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=https://temp.webplay.fun/jtv/key.php?id=144
-#EXTVLCOPT:http-user-agent=plaYtv/7.1.3 (Linux;Android 13) ygx/69.1 ExoPlayerLib/824.0
-#EXTHTTP:{"cookie": "__hdnea__=st=1776761562~exp=1776783162~acl=/*~hmac=87d8f5a82e8891ffc6c1ddcb19089f4d452e56995ed82f88b746b954d17ac420"}
-https://gtvaki.1akiytb4.workers.dev/144.mpd
 
 #EXTINF:-1 tvg-id="146" group-title="English" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/History_HD.png",History TV18 HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
